@@ -7,7 +7,7 @@ def create_database():
         password=""
     )
     cursor = connection.cursor()
-    cursor.execute("CREATE DATABASE IF NOT EXISTS telefonbuchDB")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS telefonbuchdb")
     connection.close()
 
 if __name__ == "__main__":

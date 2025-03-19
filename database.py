@@ -1,5 +1,6 @@
 import mysql.connector
 
+# Funktion zum Erstellen der Datenbank und Verbindung zur Datenbank
 def create_database():
     connection = mysql.connector.connect(
         host="localhost",
@@ -7,16 +8,18 @@ def create_database():
         password=""
     )
     cursor = connection.cursor()
-    cursor.execute("CREATE DATABASE IF NOT EXISTS telefonbuch_db")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS telefonbuchdb")
     connection.close()
 
+# Funktion zum Erstellen der Tabelle für Kontakte
 def create_table():
     connection = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="DAA123",
-        database="telefonbuch_db"
+        password="",
+        database="telefonbuchdb"
     )
+    # Cursor erstellen (Vermittler für Datenbankoperationen)
     cursor = connection.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS kontakte (

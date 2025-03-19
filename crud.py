@@ -5,8 +5,20 @@ def connect_db():
         host="localhost",
         user="root",
         password="",
-        database="telefonbuch_db"
+        database="telefonbuchdb"
     )
+# Funktionen zum Abrufen, Hinzufügen, Aktualisieren und Löschen von Kontakten
+def get_contacts():
+    try:
+        connection = connect_db()
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM kontakte") 
+        contacts = cursor.fetchall()
+        connection.close()
+        return contacts
+    except mysql.connector.Error as err:
+        print(f"Fehler: {err}")
+        return []
 
 def insert_contact(name, vorname, telefonnummer, handynummer):
     connection = connect_db()
@@ -15,15 +27,7 @@ def insert_contact(name, vorname, telefonnummer, handynummer):
     cursor.execute(sql, (name, vorname, telefonnummer, handynummer))
     connection.commit()
     connection.close()
-
-def get_contacts():
-    connection = connect_db()
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM kontakte")
-    for row in cursor.fetchall():
-        print(row)
-    connection.close()
-
+    
 def update_contact(contact_id, name, vorname, telefonnummer, handynummer):
     connection = connect_db()
     cursor = connection.cursor()
