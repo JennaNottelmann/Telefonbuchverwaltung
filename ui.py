@@ -97,7 +97,7 @@ def refresh_contacts():
         for contact in contacts:
             if len(contact) >= 5:
                 contact_id, name, vorname, telefonnummer, handynummer = contact[:5]
-                contact_display = f"{contact_id}: {name} {vorname} - {telefonnummer if telefonnummer else '-'} / {handynummer if handynummer else '-'}"
+                contact_display = f"{contact_id}: {name} {vorname} - {telefonnummer or '-'} / {handynummer or '-'}"
                 contact_listbox.insert(tk.END, contact_display)
 
 # Hauptfenster der GUI erstellen
